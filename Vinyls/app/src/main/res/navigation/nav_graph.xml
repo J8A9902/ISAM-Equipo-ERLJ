@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/fragmentMenuInicial">
+
+    <fragment
+        android:id="@+id/fragmentMenuInicial"
+        android:name="com.example.vinyls.view.FragmentMenuInicial"
+        android:label="fragment_menu_inicial"
+        tools:layout="@layout/fragment_menu_inicial" >
+        <action
+            android:id="@+id/action_fragmentMenuInicial_to_fragmentAlbumList"
+            app:destination="@id/fragmentAlbumList" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentAlbumList"
+        android:name="com.example.vinyls.view.FragmentAlbumList"
+        android:label="fragment_album_list"
+        tools:layout="@layout/fragment_album_list" >
+        <argument
+            android:name="user"
+            app:argType="integer" />
+    </fragment>
+</navigation>
