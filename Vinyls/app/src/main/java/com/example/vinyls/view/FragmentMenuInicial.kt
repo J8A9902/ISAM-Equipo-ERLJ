@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.findNavController
 import com.example.vinyls.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -39,7 +40,8 @@ class FragmentMenuInicial : Fragment() {
 
             val fragment = FragmentAlbumList()
             fragment.arguments = bundle
-            fragmentManager?.beginTransaction()?.replace(R.id.nav_host_fragment,fragment)?.commit()
+            val action = FragmentMenuInicialDirections.actionFragmentMenuInicialToFragmentAlbumList(1)
+            view.findNavController().navigate(action)
 
         }
         val btn2 : TextView = view.findViewById(R.id.tvColeccionista)
@@ -50,7 +52,8 @@ class FragmentMenuInicial : Fragment() {
 
             val fragment = FragmentAlbumList()
             fragment.arguments = bundle
-            fragmentManager?.beginTransaction()?.replace(R.id.nav_host_fragment,fragment)?.commit()
+            val action = FragmentMenuInicialDirections.actionFragmentMenuInicialToFragmentAlbumList(1)
+            view.findNavController().navigate(action)
 
         }
 
