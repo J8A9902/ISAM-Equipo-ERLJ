@@ -24,9 +24,6 @@ class FragmentAlbumDetail : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentAlbumDetailBinding.inflate(inflater, container, false)
-        val args: FragmentAlbumDetailArgs by navArgs()
-        tvName.text = args.name
-        tvGenre.text = args.genero
         val view = binding.root
         return view
     }

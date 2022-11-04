@@ -27,15 +27,5 @@
     <fragment
         android:id="@+id/fragmentAlbumDetail"
         android:name="com.example.vinyls.view.FragmentAlbumDetail"
-        tools:layout="@layout/fragment_album_detail">
-        <argument
-            android:name="name"
-            app:argType="string" />
-        <argument
-            android:name="genero"
-            app:argType="string" />
-        <argument
-            android:name="cover"
-            app:argType="string" />
-    </fragment>
+        tools:layout="@layout/fragment_album_detail"/>
 </navigation>
