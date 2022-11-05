@@ -52,7 +52,7 @@ class FragmentMenuInicial : Fragment() {
 
             val fragment = FragmentAlbumList()
             fragment.arguments = bundle
-            val action = FragmentMenuInicialDirections.actionFragmentMenuInicialToFragmentAlbumList(1)
+            val action = FragmentMenuInicialDirections.actionFragmentMenuInicialToFragmentAlbumList(2)
             view.findNavController().navigate(action)
 
         }
