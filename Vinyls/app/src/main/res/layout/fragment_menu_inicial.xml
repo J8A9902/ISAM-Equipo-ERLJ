@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/fragment_menu"
     android:name="fragment_menu"
-    app:defaultNavHost="true"
-    tools:context=".view.FragmentMenuInicial">
+    app:defaultNavHost="true">
 
     <!-- TODO: Update blank fragment layout -->
 

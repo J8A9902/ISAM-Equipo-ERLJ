@@ -5,4 +5,9 @@
     <string name="texto_usuario">Usuario visitante</string>
     <string name="texto_coleccionista">Coleccionista</string>
     <string name="text_usuario">Usuario visitante</string>
+    <string name="text_album_genero">Género</string>
+    <string name="text_album_fecha">Fecha</string>
+    <string name="text_album_descripcion">Descripción</string>
+
+
 </resources>
