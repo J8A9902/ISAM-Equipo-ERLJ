@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -28,6 +29,10 @@ class MainActivity : AppCompatActivity() {
         Log.d("act", navController.toString())
         setSupportActionBar(findViewById(R.id.my_toolbar))
         setupActionBarWithNavController(navController)
+        //Home Button
+        val houseButton = findViewById<ImageView>(R.id.imHouse)
+
+        houseButton.setOnClickListener { navController.navigate(R.id.action_global_fragmentMenuInicial) }
 
     }
 
