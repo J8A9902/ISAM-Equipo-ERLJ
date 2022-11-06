@@ -33,17 +33,7 @@ class FragmentMenuInicial : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_menu_inicial, container, false);
         val btn : TextView = view.findViewById(R.id.tvVisitante)
-        btn.setOnClickListener{
-            val user = 1
-            val bundle = Bundle()
-            bundle.putInt("user", user)
 
-            val fragment = FragmentAlbumList()
-            fragment.arguments = bundle
-            val action = FragmentMenuInicialDirections.actionFragmentMenuInicialToFragmentAlbumList(1)
-            view.findNavController().navigate(action)
-
-        }
         val btn2 : TextView = view.findViewById(R.id.tvColeccionista)
         btn2.setOnClickListener{
             val user = 2
