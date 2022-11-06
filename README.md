@@ -11,4 +11,9 @@
 
 
 # APK
-Se encuentra el apk en el enlace: **https://github.com/J8A9902/ISAM-Equipo-ERLJ/releases/tag/sprint1**
+Se encuentra el apk en el enlace: **https://github.com/J8A9902/ISAM-Equipo-ERLJ/releases/download/sprint1/vinyls.apk**
+  
+# Entrega Sprint 1
+Se encuentra disponible la entrega en la rama release y se puede validar en el siguiente enlace de igual manera: 
+  **https://github.com/J8A9902/ISAM-Equipo-ERLJ/releases/tag/sprint1**
+  
