@@ -49,13 +49,13 @@ class MainActivityTest {
 
     @Test
     fun navigateToAlbumList() {
-        onView(withId(R.id.tvVisitante)).perform(click())
+        onView(withId(R.id.tvColeccionista)).perform(click())
         onView(withId(R.id.fragmentAlbumList)).check(matches(isDisplayed()))
     }
 
     @Test
     fun navigateToAlbumDetails() {
-        onView(withId(R.id.tvVisitante)).perform(click())
+        onView(withId(R.id.tvColeccionista)).perform(click())
 
         SystemClock.sleep(2000);
 
