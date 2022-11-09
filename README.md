@@ -7,7 +7,6 @@
   
  - Definir una máquina virtual o física donde ejecutar el proyecyo
  - Una vez actualiado el proyecto en el IDE, ejecutar en la parte superior la app(flecha verde) en el dispositivo deseado
- 
   ![image](https://user-images.githubusercontent.com/98363516/200151031-bb5f65f5-a402-49a6-bc92-a65c8cd75b07.png)
 
 
