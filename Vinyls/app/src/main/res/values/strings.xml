@@ -8,6 +8,18 @@
     <string name="text_album_genero">Género</string>
     <string name="text_album_fecha">Fecha</string>
     <string name="text_album_descripcion">Descripción</string>
+    <string name="title_activity_menu">menu</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="menu_album">Albumes</string>
+    <string name="menu_Artistas">Artistas</string>
+    <string name="menu_Colecciones">Colecciones</string>
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
 
 </resources>

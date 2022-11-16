@@ -8,6 +8,6 @@ data class Musician(
     val image:String,
     val description:String,
     val birthDate: String,
-    val album: String,
+    val album: JSONArray,
     val performerPrize: JSONArray
 )

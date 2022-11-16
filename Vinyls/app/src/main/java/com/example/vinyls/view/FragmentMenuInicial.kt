@@ -1,5 +1,6 @@
 package com.example.vinyls.view
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -25,6 +26,7 @@ class FragmentMenuInicial : Fragment() {
     private var param2: String? = null
 
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,17 +34,15 @@ class FragmentMenuInicial : Fragment() {
         // Inflate the layout for this fragment
 
         val view = inflater.inflate(R.layout.fragment_menu_inicial, container, false);
-        val btn : TextView = view.findViewById(R.id.tvVisitante)
+        val btn : TextView = view.findViewById(R.id.tvAlbum)
+        btn.setOnClickListener{
+            val action = FragmentMenuInicialDirections.actionFragmentMenuInicialToFragmentAlbumList()
+            view.findNavController().navigate(action)
 
-        val btn2 : TextView = view.findViewById(R.id.tvColeccionista)
+        }
+        val btn2 : TextView = view.findViewById(R.id.tvArtista)
         btn2.setOnClickListener{
-            val user = 2
-            val bundle = Bundle()
-            bundle.putInt("user", user)
-
-            val fragment = FragmentAlbumList()
-            fragment.arguments = bundle
-            val action = FragmentMenuInicialDirections.actionFragmentMenuInicialToFragmentAlbumList(2)
+            val action = FragmentMenuInicialDirections.actionFragmentMenuInicialToFragmentMusicianList()
             view.findNavController().navigate(action)
 
         }
