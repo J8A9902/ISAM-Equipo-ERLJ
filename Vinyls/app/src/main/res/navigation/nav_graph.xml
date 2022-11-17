@@ -12,14 +12,14 @@
         <action
             android:id="@+id/action_fragmentMenuInicial_to_fragmentAlbumList"
             app:destination="@id/fragmentAlbumList" />
+        <action
+            android:id="@+id/action_fragmentMenuInicial_to_fragmentMusicianList"
+            app:destination="@id/fragmentMusicianList" />
     </fragment>
     <fragment
         android:id="@+id/fragmentAlbumList"
         android:name="com.example.vinyls.view.FragmentAlbumList"
         tools:layout="@layout/fragment_album_list">
-        <argument
-            android:name="user"
-            app:argType="integer" />
         <action
             android:id="@+id/action_fragmentAlbumList_to_fragmentAlbumDetail"
             app:destination="@id/fragmentAlbumDetail" />
@@ -44,4 +44,7 @@
             android:name="description"
             app:argType="string" />
     </fragment><action android:id="@+id/action_global_fragmentMenuInicial" app:destination="@id/fragmentMenuInicial"/>
+    <fragment
+        android:id="@+id/fragmentMusicianList"
+        android:name="com.example.vinyls.view.fragmentMusicianList" />
 </navigation>

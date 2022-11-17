@@ -13,25 +13,25 @@
 
     
     <TextView
-        android:id="@+id/tvVisitante"
+        android:id="@+id/tvAlbum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_margin="12dp"
-        android:text="@string/text_usuario"
+        android:text="@string/menu_album"
         android:textSize="22dp"
         android:textColor="@color/black"/>
 
     <TextView
-        android:id="@+id/tvColeccionista"
+        android:id="@+id/tvArtista"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tvVisitante"
+        app:layout_constraintTop_toBottomOf="@id/tvAlbum"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_margin="12dp"
-        android:text="@string/texto_coleccionista"
+        android:text="@string/menu_Artistas"
         android:textSize="22dp"
         android:textColor="@color/black"/>
 

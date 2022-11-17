@@ -1,7 +1,6 @@
 package com.example.vinyls.network
 
 import android.content.Context
-import android.util.Log
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
@@ -10,6 +9,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.vinyls.models.Album
+import com.example.vinyls.models.Musician
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -54,6 +54,38 @@ class NetworkServiceAdapter constructor(context: Context) {
                 onError(it)
             }))
     }
+
+    fun getMusicians(onComplete:(resp:List<Musician>)->Unit, onError: (error:VolleyError)->Unit){
+        requestQueue.add(getRequest("musicians",
+            Response.Listener<String> { response ->
+                val resp = JSONArray(response)
+                val list = mutableListOf<Musician>()
+                for (i in 0 until resp.length()) {
+                    val item = resp.getJSONObject(i)
+                    list.add(i, Musician(
+                        musicianId = item.getInt("id"),
+                        name = item.getString("name"), image = item.getString("image"), description = item.getString("description"), birthDate = item.getString("birthDate"), album = item.getJSONArray("albums"), performerPrize = item.getJSONArray("performerPrizes")))
+                }
+                onComplete(list)
+            },
+            Response.ErrorListener {
+                onError(it)
+            }))
+    }
+
+    fun getMusicianById(musicianId:Int, onComplete:(resp:Musician)->Unit, onError: (error:VolleyError)->Unit){
+        requestQueue.add(getRequest("musician",
+            Response.Listener<String> { response ->
+                val resp = JSONObject(response)
+                val band = Musician(musicianId = resp.getInt("id"),name = resp.getString("name"), image = resp.getString("image"), description = resp.getString("description"), birthDate = resp.getString("birthDate"), album = resp.getJSONArray("albums"), performerPrize = resp.getJSONArray("performerPrizes"))
+                onComplete(band)
+            },
+            Response.ErrorListener {
+                onError(it)
+            }))
+    }
+
+
 
 
     private fun getRequest(path:String, responseListener: Response.Listener<String>, errorListener: Response.ErrorListener): StringRequest {

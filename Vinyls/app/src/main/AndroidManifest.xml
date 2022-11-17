@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -14,10 +15,19 @@
         android:theme="@style/Theme.Vinyls"
         tools:targetApi="31">
         <activity
+            android:name=".menu"
+            android:exported="false"
+            android:label="@string/title_activity_menu"
+            android:theme="@style/Theme.Vinyls.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".view.MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.Vinyls.NoActionBar"
-            android:label=" ">
+            android:label=" "
+            android:theme="@style/Theme.Vinyls.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
