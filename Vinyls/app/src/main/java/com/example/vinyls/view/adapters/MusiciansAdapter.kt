@@ -17,7 +17,7 @@ class MusiciansAdapter : RecyclerView.Adapter<MusiciansAdapter.MusicianViewHolde
     var musicians :List<Musician> = emptyList()
         set(value) {
             field = value
-            notifyDataSetChanged()
+            notifyDataSetChanged()   //notifyItemChanged(1)
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MusicianViewHolder {
