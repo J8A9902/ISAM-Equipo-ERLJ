@@ -49,7 +49,11 @@
     </fragment><action android:id="@+id/action_global_fragmentMenuInicial" app:destination="@id/fragmentMenuInicial"/>
     <fragment
         android:id="@+id/fragmentMusicianList"
-        android:name="com.example.vinyls.view.fragmentMusicianList" />
+        android:name="com.example.vinyls.view.fragmentMusicianList" >
+        <action
+            android:id="@+id/action_fragmentMusicianList_to_fragmentMusicianDetail"
+            app:destination="@id/fragmentMusicianDetail" />
+    </fragment>
 
     <fragment
         android:id="@+id/fragmentColeccionistaList"
@@ -67,6 +71,23 @@
         tools:layout="@layout/fragment_collector_detail">
         <argument
             android:name="name"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentMusicianDetail"
+        android:name="com.example.vinyls.view.FragmentMusicianDetail"
+        tools:layout="@layout/fragment_musician_detail">
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <argument
+            android:name="birthDate"
+            app:argType="string" />
+        <argument
+            android:name="image"
+            app:argType="string" />
+        <argument
+            android:name="description"
             app:argType="string" />
     </fragment>
 
