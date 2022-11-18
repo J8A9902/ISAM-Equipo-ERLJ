@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.MenuItem
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -35,6 +36,8 @@ class MainActivity : AppCompatActivity() {
 
         houseButton.setOnClickListener { navController.navigate(R.id.action_global_fragmentMenuInicial) }
 
+        //Disable Dark Mode
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
     }
 
     override fun onSupportNavigateUp(): Boolean {

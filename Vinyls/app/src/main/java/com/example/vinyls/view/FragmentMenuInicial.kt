@@ -44,11 +44,22 @@ class FragmentMenuInicial : Fragment() {
         btn2.setOnClickListener{
             val action = FragmentMenuInicialDirections.actionFragmentMenuInicialToFragmentMusicianList()
             view.findNavController().navigate(action)
-
         }
+
+        this.addColeccionistaEventListener(view)
 
 
         return view
+    }
+
+
+    fun addColeccionistaEventListener(view: View) {
+        val btnColeccionista: TextView = view.findViewById(R.id.tvColeccionista)
+
+        btnColeccionista.setOnClickListener {
+            val action = FragmentMenuInicialDirections.actionFragmentMenuInicialToFragmentColeccionistaList()
+            view.findNavController().navigate(action)
+        }
     }
 
 

@@ -9,6 +9,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.vinyls.models.Album
+import com.example.vinyls.models.Collector
 import com.example.vinyls.models.Musician
 import org.json.JSONArray
 import org.json.JSONObject
@@ -69,6 +70,25 @@ class NetworkServiceAdapter constructor(context: Context) {
                 onComplete(list)
             },
             Response.ErrorListener {
+                onError(it)
+            }))
+    }
+
+
+    fun getCollectors(onComplete:(resp:List<Collector>)->Unit, onError: (error:VolleyError)->Unit){
+        requestQueue.add(getRequest("collectors",
+            { response ->
+                val resp = JSONArray(response)
+                val list = mutableListOf<Collector>()
+                for (i in 0 until resp.length()) {
+                    val item = resp.getJSONObject(i)
+                    list.add(i, Collector(
+                        collectorId = item.getInt("id"),
+                        name = item.getString("name"), telephone = item.getString("telephone"), email = item.getString("email"), comments = item.getJSONArray("comments"), favoritePerformers = item.getJSONArray("favoritePerformers"), collectorAlbums = item.getJSONArray("collectorAlbums")))
+                }
+                onComplete(list)
+            },
+            {
                 onError(it)
             }))
     }
