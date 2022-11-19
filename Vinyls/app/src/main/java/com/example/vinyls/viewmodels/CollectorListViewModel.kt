@@ -1,11 +1,18 @@
 package com.example.vinyls.viewmodels
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
+import com.example.vinyls.database.VinylRoomDatabase
 import com.example.vinyls.models.Collector
 import com.example.vinyls.network.NetworkServiceAdapter
+import com.example.vinyls.repositories.CollectorRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class CollectorListViewModel(application: Application): AndroidViewModel(application) {
+    private val collectorRepository = CollectorRepository(application, VinylRoomDatabase.getDatabase(application.applicationContext).collectorsDao())
     private val _collectors = MutableLiveData<List<Collector>>()
     private var _eventNetworkError = MutableLiveData<Boolean>(false)
     private var _isNetworkErrorShown = MutableLiveData<Boolean>(false)
@@ -17,13 +24,20 @@ class CollectorListViewModel(application: Application): AndroidViewModel(applica
     init { refreshDataFromNetwork() }
 
     private fun refreshDataFromNetwork() {
-        NetworkServiceAdapter.getInstance(getApplication()).getCollectors({
-            _collectors.postValue(it)
-            _eventNetworkError.value = false
-            _isNetworkErrorShown.value = false
-        },{
-            _eventNetworkError.value = true
-        })
+        try {
+            viewModelScope.launch(Dispatchers.Default) {
+                withContext(Dispatchers.IO) {
+                    var data = collectorRepository.refreshData()
+                    _collectors.postValue(data)
+                }
+                _eventNetworkError.postValue(false)
+                _isNetworkErrorShown.postValue(false)
+            }
+        }
+        catch (e:Exception){ //se procesa la excepcion
+            Log.d("Error", e.toString())
+            _eventNetworkError.postValue(true)
+        }
     }
 
     fun onNetworkErrorShown() {

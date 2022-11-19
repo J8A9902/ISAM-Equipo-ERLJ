@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.vinyls.R
 import com.example.vinyls.databinding.MusicianItemBinding
 import com.example.vinyls.models.Musician
+import com.example.vinyls.view.fragmentMusicianListDirections
 
 
 class MusiciansAdapter : RecyclerView.Adapter<MusiciansAdapter.MusicianViewHolder>(){
@@ -16,7 +17,7 @@ class MusiciansAdapter : RecyclerView.Adapter<MusiciansAdapter.MusicianViewHolde
     var musicians :List<Musician> = emptyList()
         set(value) {
             field = value
-            notifyDataSetChanged()
+            notifyDataSetChanged()   //notifyItemChanged(1)
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MusicianViewHolder {
@@ -33,9 +34,8 @@ class MusiciansAdapter : RecyclerView.Adapter<MusiciansAdapter.MusicianViewHolde
             it.musician = musicians[position]
         }
         holder.viewDataBinding.root.setOnClickListener {
-            // val action = FragmentAlbumListDirections.actionFragmentAlbumListToFragmentAlbumDetail(albums[position].name, albums[position].genre, albums[position].cover, albums[position].releaseDate, albums[position].description)
-            // Navigate using that action
-            // holder.viewDataBinding.root.findNavController().navigate(action)
+            val action = fragmentMusicianListDirections.actionFragmentMusicianListToFragmentMusicianDetail(musicians[position].name, musicians[position].birthDate, musicians[position].image, musicians[position].description)
+            holder.viewDataBinding.root.findNavController().navigate(action)
         }
     }
 
