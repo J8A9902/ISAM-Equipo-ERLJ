@@ -82,9 +82,7 @@ class NetworkServiceAdapter constructor(context: Context) {
                         name = item.getString("name"),
                         image = item.getString("image"),
                         description = item.getString("description"),
-                        birthDate = item.getString("birthDate"),
-                        album = item.getJSONArray("albums"),
-                        performerPrize = item.getJSONArray("performerPrizes")))
+                        birthDate = item.getString("birthDate")))
                 }
                 cont.resume(list)
             },
@@ -106,10 +104,7 @@ class NetworkServiceAdapter constructor(context: Context) {
                         collectorId = item.getInt("id"),
                         name = item.getString("name"),
                         telephone = item.getString("telephone"),
-                        email = item.getString("email"),
-                        comments = item.getJSONArray("comments"),
-                        favoritePerformers = item.getJSONArray("favoritePerformers"),
-                        collectorAlbums = item.getJSONArray("collectorAlbums")))
+                        email = item.getString("email")))
                 }
                 cont.resume(list)
             },
@@ -122,7 +117,7 @@ class NetworkServiceAdapter constructor(context: Context) {
         requestQueue.add(getRequest("musician",
             Response.Listener<String> { response ->
                 val resp = JSONObject(response)
-                val band = Musician(musicianId = resp.getInt("id"),name = resp.getString("name"), image = resp.getString("image"), description = resp.getString("description"), birthDate = resp.getString("birthDate"), album = resp.getJSONArray("albums"), performerPrize = resp.getJSONArray("performerPrizes"))
+                val band = Musician(musicianId = resp.getInt("id"),name = resp.getString("name"), image = resp.getString("image"), description = resp.getString("description"), birthDate = resp.getString("birthDate"))
                 onComplete(band)
             },
             Response.ErrorListener {

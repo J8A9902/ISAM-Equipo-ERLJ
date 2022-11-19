@@ -3,17 +3,16 @@ package com.example.vinyls.viewmodels
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
+import com.example.vinyls.database.VinylRoomDatabase
 import com.example.vinyls.models.Collector
 import com.example.vinyls.network.NetworkServiceAdapter
 import com.example.vinyls.repositories.CollectorRepository
-import com.example.vinyls.repositories.MusicianRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class CollectorListViewModel(application: Application): AndroidViewModel(application) {
-    private val collectorRepository = CollectorRepository(application)
-
+    private val collectorRepository = CollectorRepository(application, VinylRoomDatabase.getDatabase(application.applicationContext).collectorsDao())
     private val _collectors = MutableLiveData<List<Collector>>()
     private var _eventNetworkError = MutableLiveData<Boolean>(false)
     private var _isNetworkErrorShown = MutableLiveData<Boolean>(false)

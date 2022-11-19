@@ -3,6 +3,7 @@ package com.example.vinyls.viewmodels
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
+import com.example.vinyls.database.VinylRoomDatabase
 import com.example.vinyls.models.Musician
 import com.example.vinyls.network.NetworkServiceAdapter
 import com.example.vinyls.repositories.MusicianRepository
@@ -11,7 +12,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class MusicianListViewModel(application: Application) :  AndroidViewModel(application) {
-        private val musicianRepository = MusicianRepository(application)
+        private val musicianRepository = MusicianRepository(application, VinylRoomDatabase.getDatabase(application.applicationContext).musiciansDao())
 
         private val _musicians = MutableLiveData<List<Musician>>()
 
