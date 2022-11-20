@@ -12,14 +12,17 @@
         <action
             android:id="@+id/action_fragmentMenuInicial_to_fragmentAlbumList"
             app:destination="@id/fragmentAlbumList" />
+        <action
+            android:id="@+id/action_fragmentMenuInicial_to_fragmentMusicianList"
+            app:destination="@id/fragmentMusicianList" />
+        <action
+            android:id="@+id/action_fragmentMenuInicial_to_fragmentColeccionistaList"
+            app:destination="@id/fragmentColeccionistaList" />
     </fragment>
     <fragment
         android:id="@+id/fragmentAlbumList"
         android:name="com.example.vinyls.view.FragmentAlbumList"
         tools:layout="@layout/fragment_album_list">
-        <argument
-            android:name="user"
-            app:argType="integer" />
         <action
             android:id="@+id/action_fragmentAlbumList_to_fragmentAlbumDetail"
             app:destination="@id/fragmentAlbumDetail" />
@@ -44,4 +47,48 @@
             android:name="description"
             app:argType="string" />
     </fragment><action android:id="@+id/action_global_fragmentMenuInicial" app:destination="@id/fragmentMenuInicial"/>
+    <fragment
+        android:id="@+id/fragmentMusicianList"
+        android:name="com.example.vinyls.view.fragmentMusicianList" >
+        <action
+            android:id="@+id/action_fragmentMusicianList_to_fragmentMusicianDetail"
+            app:destination="@id/fragmentMusicianDetail" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentColeccionistaList"
+        android:name="com.example.vinyls.view.FragmentColeccionistaList"
+        tools:layout="@layout/fragment_coleccionista_list">
+    <action
+        android:id="@+id/actionFragmentCollectoristToFragmentCollectorDetail"
+        app:destination="@id/fragmentCollectorDetail"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentCollectorDetail"
+        android:name="com.example.vinyls.view.FragmentCollectorDetail"
+        tools:layout="@layout/fragment_collector_detail">
+        <argument
+            android:name="name"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentMusicianDetail"
+        android:name="com.example.vinyls.view.FragmentMusicianDetail"
+        tools:layout="@layout/fragment_musician_detail">
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <argument
+            android:name="birthDate"
+            app:argType="string" />
+        <argument
+            android:name="image"
+            app:argType="string" />
+        <argument
+            android:name="description"
+            app:argType="string" />
+    </fragment>
+
 </navigation>

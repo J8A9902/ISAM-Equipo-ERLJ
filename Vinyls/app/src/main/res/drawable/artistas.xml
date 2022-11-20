@@ -1,0 +1,9 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="94dp"
+    android:height="20dp"
+    android:viewportWidth="94"
+    android:viewportHeight="20">
+  <path
+      android:pathData="@string/pathArtistas"
+      android:fillColor="#000000"/>
+</vector>
