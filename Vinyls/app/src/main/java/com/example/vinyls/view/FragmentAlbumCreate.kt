@@ -15,13 +15,11 @@ import com.example.vinyls.R
 import com.example.vinyls.databinding.FragmentAlbumCreateBinding
 import com.example.vinyls.models.Album
 import com.example.vinyls.viewmodels.AlbumCreateViewModel
-import kotlinx.coroutines.Dispatchers
 import org.json.JSONObject
 
 import androidx.lifecycle.*
 import androidx.test.core.app.ActivityScenario.launch
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -77,17 +75,18 @@ class FragmentAlbumCreate : Fragment() {
             /** strAlbum="{\n    \"name\": \"El Cocinero Mayor\",\n    \"cover\": \"https://i.pinimg.com/564x/aa/5f/ed/aa5fed7fac61cc8f41d1e79db917a7cd.jpg\",\n    \"releaseDate\": \"1984-08-01T00:00:00-05:00\",\n    \"description\": \"Buscando América es el primer álbum de la banda de Rubén Blades y Seis del Solar lanzado en 1984. La producción, bajo el sello Elektra, fusiona diferentes ritmos musicales tales como la salsa, reggae, rock, y el jazz latino. El disco fue grabado en Eurosound Studios en Nueva York entre mayo y agosto de 1983.\",\n    \"genre\": \"Salsa\",\n    \"recordLabel\": \"Elektra\"\n}"  **/
             strAlbum="{\n    \"name\": \""+binding.txtEditNombreAlbum.text.toString()+"\",\n    \"cover\": \""+binding.txtEditCoverAlbum.text.toString()+"\",\n    \"releaseDate\": \""+binding.txtEditFechaAlbum.text.toString()+"\",\n    \"description\": \""+binding.txtEditDescAlbum.text.toString()+"\",\n    \"genre\": \""+binding.txtEditGeneroAlbum.text.toString()+"\",\n    \"recordLabel\": \""+binding.txtEditRecordAlbum.text.toString()+"\"\n}"
             Log.d("CrearAlbum", strAlbum)
-            viewModel.createAlbumFromNetwork(JSONObject(strAlbum))
-            Log.d("CrearAlbum", "Despues acceso red")
-            /** val action = FragmentAlbumCreateDirections.actionFragmentAlbumCreateToFragmentAlbumDetail(viewModel.album.value!!.name, viewModel.album.value!!.genre, viewModel.album.value!!.cover, viewModel.album.value!!.releaseDate, viewModel.album.value!!.description) **/
-            /** val action = FragmentAlbumCreateDirections.actionFragmentAlbumCreateToFragmentAlbumDetail("nombre", "genero", "img", "2022-10-19", "desc")
-            view?.findNavController()?.navigate(action) **/
+            lifecycleScope.launch {
+                val idAlbum=async{ viewModel.createAlbumFromNetwork(JSONObject(strAlbum)) }
+                idAlbum.await()
+            }
+            val action = FragmentAlbumCreateDirections.actionFragmentAlbumCreateToFragmentAlbumDetail(binding.txtEditNombreAlbum.text.toString(), binding.txtEditGeneroAlbum.text.toString(), binding.txtEditCoverAlbum.text.toString(), binding.txtEditFechaAlbum.text.toString(), binding.txtEditDescAlbum.text.toString())
+            view?.findNavController()?.navigate(action)
         }
         viewModel.album.observe(viewLifecycleOwner, /**binding. = this**/
         Observer<Album> {
             it.apply {
-                val action = FragmentAlbumCreateDirections.actionFragmentAlbumCreateToFragmentAlbumDetail(it.name, it.genre, it.cover, it.releaseDate, it.description)
-                view?.findNavController()?.navigate(action)
+                /** val action = FragmentAlbumCreateDirections.actionFragmentAlbumCreateToFragmentAlbumDetail(it.name, it.genre, it.cover, it.releaseDate, it.description)
+                view?.findNavController()?.navigate(action) **/
             }
         })
         viewModel.eventNetworkError.observe(viewLifecycleOwner, Observer<Boolean> { isNetworkError ->

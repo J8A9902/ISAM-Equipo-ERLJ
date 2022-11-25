@@ -30,12 +30,14 @@ class AlbumCreateViewModel(application: Application) :  AndroidViewModel(applica
 
     }
 
-    fun createAlbumFromNetwork(album: JSONObject) {
+    suspend fun createAlbumFromNetwork(album: JSONObject):Int {
+        var id:Int=0
         try {
             viewModelScope.launch (Dispatchers.Default){
                 withContext(Dispatchers.IO){
                     var data = albumsRepository.createAlbum(album)
                     _album.postValue(data)
+                    id=data.albumId
                 }
                 _eventNetworkError.postValue(false)
                 _isNetworkErrorShown.postValue(false)
@@ -44,6 +46,7 @@ class AlbumCreateViewModel(application: Application) :  AndroidViewModel(applica
         catch (e:Exception){
             _eventNetworkError.value = true
         }
+        return id
     }
 
     fun onNetworkErrorShown() {
