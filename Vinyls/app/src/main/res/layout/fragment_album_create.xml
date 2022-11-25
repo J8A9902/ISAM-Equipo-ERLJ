@@ -15,7 +15,7 @@
             android:id="@+id/idCreateAlbum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="64dp"
             android:text="@string/crear_album"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -37,6 +37,7 @@
 
         <Button
             android:id="@+id/btnCrearAlbumRed"
+            style="@style/Widget.AppCompat.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
