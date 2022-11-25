@@ -26,6 +26,9 @@
         <action
             android:id="@+id/action_fragmentAlbumList_to_fragmentAlbumDetail"
             app:destination="@id/fragmentAlbumDetail" />
+        <action
+            android:id="@+id/action_fragmentAlbumList_to_fragmentAlbumCreate"
+            app:destination="@id/fragmentAlbumCreate" />
     </fragment>
     <fragment
         android:id="@+id/fragmentAlbumDetail"
@@ -95,6 +98,13 @@
         <argument
             android:name="description"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentAlbumCreate"
+        android:name="com.example.vinyls.view.FragmentAlbumCreate">
+        <action
+            android:id="@+id/action_fragmentAlbumCreate_to_fragmentAlbumDetail"
+            app:destination="@id/fragmentAlbumDetail" />
     </fragment>
 
 </navigation>
