@@ -35,7 +35,7 @@ class CollectorsAdapter : RecyclerView.Adapter<CollectorsAdapter.CollectorViewHo
             it.collector = collector[position]
         }
         holder.viewDataBinding.root.setOnClickListener {
-            val action = FragmentColeccionistaListDirections.actionFragmentCollectoristToFragmentCollectorDetail(collector[position].name)
+            val action = FragmentColeccionistaListDirections.actionFragmentCollectoristToFragmentCollectorDetail(collector[position].name, collector[position].telephone, collector[position].email)
             // Navigate using that action
             holder.viewDataBinding.root.findNavController().navigate(action)
         }
