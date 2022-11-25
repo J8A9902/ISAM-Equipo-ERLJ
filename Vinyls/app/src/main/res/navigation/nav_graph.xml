@@ -72,6 +72,12 @@
         <argument
             android:name="name"
             app:argType="string" />
+        <argument
+            android:name="telephone"
+            app:argType="string" />
+        <argument
+            android:name="email"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/fragmentMusicianDetail"

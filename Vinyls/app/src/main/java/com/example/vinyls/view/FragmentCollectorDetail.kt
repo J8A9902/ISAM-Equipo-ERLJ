@@ -33,8 +33,13 @@ class FragmentCollectorDetail : Fragment() {
         val args: FragmentCollectorDetailArgs by navArgs()
         val view = inflater.inflate(R.layout.fragment_collector_detail, container, false);
         val tvName : TextView = view.findViewById(R.id.collector_name)
+        val tvTelephone : TextView = view.findViewById(R.id.tvTelephone)
+        val tvEmail : TextView = view.findViewById(R.id.tvEmail)
 
         tvName.text = args.name
+        tvTelephone.text = args.telephone
+        tvEmail.text = args.email
+
 
         return view
     }
