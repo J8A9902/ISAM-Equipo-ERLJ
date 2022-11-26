@@ -74,13 +74,19 @@ class FragmentAlbumCreate : Fragment() {
             AlbumCreateViewModel::class.java)
         binding.btnCrearAlbumRed.setOnClickListener{
             /** strAlbum="{\n    \"name\": \"El Cocinero Mayor\",\n    \"cover\": \"https://i.pinimg.com/564x/aa/5f/ed/aa5fed7fac61cc8f41d1e79db917a7cd.jpg\",\n    \"releaseDate\": \"1984-08-01T00:00:00-05:00\",\n    \"description\": \"Buscando América es el primer álbum de la banda de Rubén Blades y Seis del Solar lanzado en 1984. La producción, bajo el sello Elektra, fusiona diferentes ritmos musicales tales como la salsa, reggae, rock, y el jazz latino. El disco fue grabado en Eurosound Studios en Nueva York entre mayo y agosto de 1983.\",\n    \"genre\": \"Salsa\",\n    \"recordLabel\": \"Elektra\"\n}"  **/
-            strAlbum="{\n    \"name\": \""+binding.txtEditNombreAlbum.text.toString()+"\",\n    \"cover\": \""+binding.txtEditCoverAlbum.text.toString()+"\",\n    \"releaseDate\": \""+binding.txtEditFechaAlbum.text.toString()+"\",\n    \"description\": \""+binding.txtEditDescAlbum.text.toString()+"\",\n    \"genre\": \""+binding.txtEditGeneroAlbum.text.toString()+"\",\n    \"recordLabel\": \""+binding.txtEditRecordAlbum.text.toString()+"\"\n}"
-            lifecycleScope.launch{
-                val idAlbum=async{ viewModel.createAlbumFromNetwork(JSONObject(strAlbum)) }
-                i=idAlbum.await()
+            if (verifica()){
+                strAlbum="{\n    \"name\": \""+binding.txtEditNombreAlbum.text.toString()+"\",\n    \"cover\": \""+binding.txtEditCoverAlbum.text.toString()+"\",\n    \"releaseDate\": \""+binding.txtEditFechaAlbum.text.toString()+"\",\n    \"description\": \""+binding.txtEditDescAlbum.text.toString()+"\",\n    \"genre\": \""+binding.txtEditGeneroAlbum.text.toString()+"\",\n    \"recordLabel\": \""+binding.txtEditRecordAlbum.text.toString()+"\"\n}"
+                lifecycleScope.launch{
+                    val idAlbum=async{ viewModel.createAlbumFromNetwork(JSONObject(strAlbum)) }
+                    i=idAlbum.await()
+                }
+                /** val action = FragmentAlbumCreateDirections.actionFragmentAlbumCreateToFragmentAlbumDetail(binding.txtEditNombreAlbum.text.toString(), binding.txtEditGeneroAlbum.text.toString(), binding.txtEditCoverAlbum.text.toString(), binding.txtEditFechaAlbum.text.toString(), binding.txtEditDescAlbum.text.toString())
+                view?.findNavController()?.navigate(action) **/
             }
-            /** val action = FragmentAlbumCreateDirections.actionFragmentAlbumCreateToFragmentAlbumDetail(binding.txtEditNombreAlbum.text.toString(), binding.txtEditGeneroAlbum.text.toString(), binding.txtEditCoverAlbum.text.toString(), binding.txtEditFechaAlbum.text.toString(), binding.txtEditDescAlbum.text.toString())
-            view?.findNavController()?.navigate(action) **/
+            else{
+                Toast.makeText(activity, "Datos Invalidos", Toast.LENGTH_LONG).show()
+            }
+
         }
         viewModel.album.observe(viewLifecycleOwner, /**binding. = this**/
         Observer<Album> {
@@ -104,6 +110,24 @@ class FragmentAlbumCreate : Fragment() {
             viewModel.onNetworkErrorShown()
         }
     }
+
+    fun verifica():Boolean{
+        var resp: Boolean=true
+        if (binding.txtEditNombreAlbum.text.toString().isNullOrEmpty()){
+            resp=false
+        }
+        else if(binding.txtEditFechaAlbum.text.toString().isNullOrEmpty()){
+            resp=false
+        }
+        else if(binding.txtEditGeneroAlbum.text.toString().isNullOrEmpty()){
+            resp=false
+        }
+        else if(binding.txtEditRecordAlbum.text.toString().isNullOrEmpty()){
+            resp=false
+        }
+        return resp
+    }
+
     companion object {
         /**
          * Use this factory method to create a new instance of
