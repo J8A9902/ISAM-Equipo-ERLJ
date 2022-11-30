@@ -49,6 +49,12 @@
         <argument
             android:name="description"
             app:argType="string" />
+        <action
+            android:id="@+id/action_fragmentAlbumDetail_to_fragmentAddTrack"
+            app:destination="@id/fragmentAddTrack" />
+        <argument
+            android:name="id"
+            app:argType="integer" />
     </fragment><action android:id="@+id/action_global_fragmentMenuInicial" app:destination="@id/fragmentMenuInicial"/>
     <fragment
         android:id="@+id/fragmentMusicianList"
@@ -105,6 +111,19 @@
         <action
             android:id="@+id/action_fragmentAlbumCreate_to_fragmentAlbumDetail"
             app:destination="@id/fragmentAlbumDetail" />
+    </fragment>
+    
+    <fragment
+        android:id="@+id/fragmentAddTrack"
+        android:name="com.example.vinyls.view.FragmentAddTrack">
+        <argument android:name="albumName"
+            app:argType="string" />
+        <argument
+            android:name="albumId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_fragmentAddTrack_to_fragmentAlbumList"
+            app:destination="@id/fragmentAlbumList" />
     </fragment>
 
 </navigation>

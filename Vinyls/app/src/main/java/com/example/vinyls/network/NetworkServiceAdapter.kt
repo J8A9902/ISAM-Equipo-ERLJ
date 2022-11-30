@@ -12,6 +12,7 @@ import com.android.volley.toolbox.Volley
 import com.example.vinyls.models.Album
 import com.example.vinyls.models.Collector
 import com.example.vinyls.models.Musician
+import com.example.vinyls.models.Track
 import org.json.JSONArray
 import org.json.JSONObject
 import kotlin.coroutines.resume
@@ -139,7 +140,39 @@ class NetworkServiceAdapter constructor(context: Context) {
             }))
     }
 
+    suspend fun getTracksByAlbumId(albumId:Int) = suspendCoroutine<List<Track>>{ cont ->
+        requestQueue.add(getRequest("albums/"+albumId.toString()+"/tracks",
+            Response.Listener<String> { response ->
+                val resp = JSONArray(response)
+                val list = mutableListOf<Track>()
+                var item:JSONObject? = null
+                for (i in 0 until resp.length()) {
+                    item = resp.getJSONObject(i)
+                    list.add(i, Track(trackId = item.getInt("id"),
+                        name = item.getString("name"),
+                        duration = item.getString("duration"))
+                    )
+                }
+                cont.resume(list)
+            },
+            Response.ErrorListener {
+                cont.resumeWithException(it)
+            }))
+    }
 
+    suspend fun createTrack(body: JSONObject, albumId: Int) = suspendCoroutine<Track>{ cont->
+        Log.d("Crear Track",body.toString())
+        requestQueue.add(postRequest("albums/"+albumId.toString()+"/tracks", body,
+            { response ->
+                Log.d("Crear Track", "Track Creado")
+                val track=Track(trackId = response.getInt("id"),name = response.getString("name"), duration = response.getString("duration"))
+                cont.resume(track)
+            },
+            {
+                Log.d("Crear Track", "ERROR")
+                cont.resumeWithException(it)
+            }))
+    }
 
 
     private fun getRequest(path:String, responseListener: Response.Listener<String>, errorListener: Response.ErrorListener): StringRequest {

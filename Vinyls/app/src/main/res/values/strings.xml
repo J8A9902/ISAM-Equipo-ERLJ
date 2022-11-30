@@ -7,6 +7,10 @@
     <string name="text_album_descripcion">Descripción</string>
     <string name="title_activity_menu">menu</string>
     <!-- Strings used for fragments for navigation -->
+    <string name="botton_agregar_track">AGREGAR CANCIÓN AL ALBUM</string>
+    <string name="cancion">Canciones</string>
+    <string name="album">Albúm</string>
+    <string name="agregar_track">Agregar canción al album</string>
     <string name="menu_album">Albumes</string>
     <string name="menu_Artistas">Artistas</string>
     <string name="menu_coleccionistas">Coleccionistas</string>
