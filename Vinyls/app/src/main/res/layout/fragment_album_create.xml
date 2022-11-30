@@ -56,7 +56,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="@string/btncrear_album"
+<<<<<<< HEAD
             android:textColor="@color/design_default_color_surface"
+=======
+            android:textColor="@color/black"
+>>>>>>> 0cfc794 (centrar boton crear album)
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextDescripcion"
