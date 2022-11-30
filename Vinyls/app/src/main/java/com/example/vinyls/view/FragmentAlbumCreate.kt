@@ -91,7 +91,7 @@ class FragmentAlbumCreate : Fragment() {
         viewModel.album.observe(viewLifecycleOwner, /**binding. = this**/
         Observer<Album> {
             it.apply {
-                val action = FragmentAlbumCreateDirections.actionFragmentAlbumCreateToFragmentAlbumDetail(it.name, it.genre, it.cover, it.releaseDate, it.description)
+                val action = FragmentAlbumCreateDirections.actionFragmentAlbumCreateToFragmentAlbumDetail(it.name, it.genre, it.cover, it.releaseDate, it.description, it.albumId)
                 view?.findNavController()?.navigate(action)
             }
         })
