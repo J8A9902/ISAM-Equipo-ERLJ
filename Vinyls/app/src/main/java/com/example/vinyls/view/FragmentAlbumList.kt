@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vinyls.R
@@ -59,6 +60,10 @@ class FragmentAlbumList : Fragment() {
         viewModel.eventNetworkError.observe(viewLifecycleOwner, Observer<Boolean> { isNetworkError ->
             if (isNetworkError) onNetworkError()
         })
+        binding.btnCrearAlbum.setOnClickListener{
+            val action = FragmentAlbumListDirections.actionFragmentAlbumListToFragmentAlbumCreate()
+            view?.findNavController()?.navigate(action)
+        }
     }
     override fun onDestroyView() {
         super.onDestroyView()

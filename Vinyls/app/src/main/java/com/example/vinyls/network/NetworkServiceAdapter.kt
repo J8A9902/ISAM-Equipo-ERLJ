@@ -35,6 +35,20 @@ class NetworkServiceAdapter constructor(context: Context) {
         Volley.newRequestQueue(context.applicationContext)
     }
 
+    suspend fun createAlbum(body: JSONObject) = suspendCoroutine<Album>{ cont->
+        Log.d("Crear Album",body.toString())
+        requestQueue.add(postRequest("albums", body,
+            { response ->
+                Log.d("Crear Album", "Album Creado")
+                val album=Album(albumId = response.getInt("id"),name = response.getString("name"), cover = response.getString("cover"), recordLabel = response.getString("recordLabel"), releaseDate = response.getString("releaseDate"), genre = response.getString("genre"), description = response.getString("description"))
+                cont.resume(album)
+            },
+            {
+                Log.d("Crear Album", "ERROR")
+                cont.resumeWithException(it)
+            }))
+    }
+
     suspend fun getAlbums() = suspendCoroutine<List<Album>>{ cont ->
         requestQueue.add(getRequest("albums",
             Response.Listener<String> { response ->
