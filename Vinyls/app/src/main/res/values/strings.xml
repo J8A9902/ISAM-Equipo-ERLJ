@@ -5,9 +5,7 @@
     <string name="text_album_genero">Género</string>
     <string name="text_album_fecha">Fecha</string>
     <string name="text_album_descripcion">Descripción</string>
-    <string name="title_activity_menu">menu</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="botton_agregar_track">AGREGAR CANCIÓN AL ALBUM</string>
     <string name="cancion">Canciones</string>
     <string name="album">Albúm</string>
     <string name="agregar_track">Agregar canción al album</string>
