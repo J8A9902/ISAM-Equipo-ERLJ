@@ -7,13 +7,15 @@ import androidx.room.RoomDatabase
 import com.example.vinyls.models.Album
 import com.example.vinyls.models.Collector
 import com.example.vinyls.models.Musician
+import com.example.vinyls.models.Track
 
-@Database(entities = [Album::class, Collector::class, Musician::class], version = 1, exportSchema = false)
+@Database(entities = [Album::class, Collector::class, Musician::class, Track::class], version = 1, exportSchema = false)
 abstract class VinylRoomDatabase : RoomDatabase() {
 
     abstract fun albumsDao(): AlbumsDao
     abstract fun collectorsDao(): CollectorsDao
     abstract fun musiciansDao(): MusiciansDao
+    abstract fun tracksDao(): TracksDao
 
     companion object {
         // Singleton prevents multiple instances of database opening at the

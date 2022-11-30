@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.FragmentAlbumDetail"
+    android:layout_marginTop="60dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:id="@+id/fragmentAddTrack">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/tvTittle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/agregar_track"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="12dp"/>
+
+
+    <TextView
+        android:id="@+id/tvAlbumTittle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTittle"
+        android:textColor="@color/black"
+        android:layout_marginTop="35dp"
+        android:layout_marginStart="35dp"
+        android:text="@string/album"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:id="@+id/tvAlbumName"
+        android:layout_width="225dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTittle"
+        android:gravity="end"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="25dp"
+        android:textSize="18dp"/>
+
+    <TextView
+        android:id="@+id/tvCanciones"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nueva Canción"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvAlbumTittle"
+        android:layout_margin="12dp"/>
+
+    <EditText
+        android:id="@+id/etName"
+        android:layout_width="325dp"
+        android:layout_height="45dp"
+        android:hint="Nombre"
+        app:layout_constraintTop_toBottomOf="@id/tvCanciones"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="25dp"
+        />
+    <EditText
+        android:id="@+id/etDuration"
+        android:layout_width="325dp"
+        android:layout_height="45dp"
+        android:hint="Duración"
+        app:layout_constraintTop_toBottomOf="@id/etName"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="25dp"
+        />
+
+    <ImageView
+        android:id="@+id/btnAddTrack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/addtrack"
+        app:layout_constraintTop_toBottomOf="@id/etDuration"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="25dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
