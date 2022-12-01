@@ -18,11 +18,11 @@
         android:layout_height="wrap_content"
         android:layout_margin="25dp"
         android:text="Crear Album"
-        app:layout_constraintTop_toBottomOf="@id/albumsRv"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="@color/black"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/albumsRv" />
 
     <ImageView
         android:id="@+id/imAlbumes"

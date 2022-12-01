@@ -12,6 +12,7 @@ import org.json.JSONObject
 
 class AlbumRepository (val application: Application, private val albumsDao: AlbumsDao){
     suspend fun refreshData(): List<Album>{
+        Log.d("Prueba Corutina","Antes Refrescar Album")
         var cached = albumsDao.getAlbums()
         return if(cached.isNullOrEmpty()){
             val cm = application.baseContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -22,7 +23,7 @@ class AlbumRepository (val application: Application, private val albumsDao: Albu
     }
 
     suspend fun createAlbum(album: JSONObject):Album{
-        Log.d("AlbumRepository","Crear Album")
+        Log.d("Prueba Corutina","Crear Album")
         return NetworkServiceAdapter.getInstance(application).createAlbum(album)
     }
 }

@@ -50,6 +50,7 @@ class NetworkServiceAdapter constructor(context: Context) {
     }
 
     suspend fun getAlbums() = suspendCoroutine<List<Album>>{ cont ->
+        Log.d("Prueba Corutina","Antes de Encolar Obtener Album")
         requestQueue.add(getRequest("albums",
             Response.Listener<String> { response ->
                 val resp = JSONArray(response)
@@ -65,6 +66,7 @@ class NetworkServiceAdapter constructor(context: Context) {
                         genre = item.getString("genre"),
                         description = item.getString("description")))
                 }
+                Log.d("Prueba Corutina","Antes de Devolver Albums")
                 cont.resume(list)
             },
             Response.ErrorListener {
