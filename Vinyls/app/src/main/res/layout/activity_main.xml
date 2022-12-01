@@ -9,19 +9,23 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:contentDescription="Barra de navegación"
         >
         <ImageView
             android:id="@+id/imLogo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:minHeight="48dp"
             android:src="@drawable/vinilos"
             android:layout_gravity="center"
             android:layout_margin="12dp"
+            android:contentDescription="Logo Vinilos"
             />
     </androidx.appcompat.widget.Toolbar>
 
@@ -36,11 +40,12 @@
 
     <ImageView
         android:id="@+id/imHouse"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:src="@drawable/home"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_margin="12dp"/>
+        android:layout_margin="12dp"
+        android:contentDescription="Volver a inicio"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
