@@ -49,18 +49,16 @@
             app:layout_constraintTop_toBottomOf="@+id/idCreateAlbum"
             tools:src="@tools:sample/avatars" />
 
-        <Button
+
+        <ImageView
             android:id="@+id/btnCrearAlbumRed"
-            style="@style/Widget.AppCompat.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="@string/btncrear_album"
-            android:textColor="@color/black"
+            android:src="@drawable/btn_crear"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextDescripcion"
-            tools:ignore="DuplicateSpeakableTextCheck" />
+            tools:ignore="DuplicateSpeakableTextCheck"/>
 
         <Spinner
             android:id="@+id/spinnergen"
