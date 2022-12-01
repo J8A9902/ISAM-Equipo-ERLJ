@@ -38,8 +38,11 @@ class AlbumListViewModel(application: Application) :  AndroidViewModel(applicati
             try {
                 viewModelScope.launch(Dispatchers.Default) {
                     withContext(Dispatchers.IO) {
+                        Log.d("Prueba Corutina", "Antes AlbumRepository")
                         var data = albumRepository.refreshData()
+                        Log.d("Prueba Corutina", "Despues AlbumRepository")
                         _albums.postValue(data)
+                        Log.d("Prueba Corutina", "Despues de asignar valor")
                     }
                     _eventNetworkError.postValue(false)
                      _isNetworkErrorShown.postValue(false)
