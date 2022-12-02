@@ -40,12 +40,12 @@
 
     <ImageView
         android:id="@+id/imHouse"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:src="@drawable/home"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_margin="0dp"
+        android:layout_margin="12dp"
         android:contentDescription="Volver a inicio"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
