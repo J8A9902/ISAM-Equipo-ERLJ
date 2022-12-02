@@ -15,9 +15,11 @@
         android:id="@+id/tvTittle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:gravity="center"
         android:text="@string/agregar_track"
         android:textColor="@color/black"
-        android:textSize="25dp"
+        android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_margin="12dp"/>
@@ -27,32 +29,38 @@
         android:id="@+id/tvAlbumTittle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:minHeight="48dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvTittle"
         android:textColor="@color/black"
         android:layout_marginTop="35dp"
         android:layout_marginStart="35dp"
         android:text="@string/album"
-        android:textSize="20dp"/>
+        android:textSize="20sp"
+        android:gravity="center"/>
 
     <TextView
         android:id="@+id/tvAlbumName"
-        android:layout_width="225dp"
+        android:layout_width="wrap_content"
+        android:maxWidth="225dp"
         android:layout_height="wrap_content"
+        android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTittle"
-        android:gravity="end"
+        android:gravity="center"
         android:layout_marginTop="35dp"
         android:layout_marginEnd="25dp"
-        android:textSize="18dp"/>
+        android:textSize="18sp"/>
 
     <TextView
         android:id="@+id/tvCanciones"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:gravity="center"
         android:text="Nueva Canción"
         android:textColor="@color/black"
-        android:textSize="25dp"
+        android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvAlbumTittle"
@@ -60,8 +68,9 @@
 
     <EditText
         android:id="@+id/etName"
-        android:layout_width="325dp"
-        android:layout_height="45dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
         android:hint="Nombre"
         app:layout_constraintTop_toBottomOf="@id/tvCanciones"
         app:layout_constraintStart_toStartOf="parent"
@@ -69,8 +78,9 @@
         />
     <EditText
         android:id="@+id/etDuration"
-        android:layout_width="325dp"
-        android:layout_height="45dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
         android:hint="Duración"
         app:layout_constraintTop_toBottomOf="@id/etName"
         app:layout_constraintStart_toStartOf="parent"
@@ -85,7 +95,8 @@
         app:layout_constraintTop_toBottomOf="@id/etDuration"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="25dp" />
+        android:layout_margin="25dp"
+        android:contentDescription="Agregar canción"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

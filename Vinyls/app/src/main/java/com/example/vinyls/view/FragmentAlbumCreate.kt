@@ -1,26 +1,28 @@
 package com.example.vinyls.view
 
+import android.R
+import android.app.DatePickerDialog
+import android.content.Context
 import android.os.Bundle
-import android.provider.Settings
-import android.util.Log
-import androidx.fragment.app.Fragment
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.databinding.adapters.TextViewBindingAdapter.setText
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
-import com.example.vinyls.R
 import com.example.vinyls.databinding.FragmentAlbumCreateBinding
 import com.example.vinyls.models.Album
+import com.example.vinyls.view.dialogo.DatePickerFragment
 import com.example.vinyls.viewmodels.AlbumCreateViewModel
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import org.json.JSONObject
-
-import androidx.lifecycle.*
-import androidx.test.core.app.ActivityScenario.launch
-import kotlinx.coroutines.*
-
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
@@ -32,6 +34,10 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class FragmentAlbumCreate : Fragment() {
+    lateinit var contexto:Context
+    var generos = arrayOf("Classical","Salsa","Rock","Folk")
+    var sellos = arrayOf("Sony Music","EMI","Discos Fuentes","Elektra","Fania Records")
+    private val array_generos: Array<String> = arrayOf("Classical","Salsa","Rock","Folk")
     private var _binding: FragmentAlbumCreateBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: AlbumCreateViewModel
@@ -48,6 +54,11 @@ class FragmentAlbumCreate : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
+    }
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        this.contexto = context
     }
 
     override fun onCreateView(
@@ -56,11 +67,45 @@ class FragmentAlbumCreate : Fragment() {
     ): View? {
         _binding = FragmentAlbumCreateBinding.inflate(inflater, container, false)
         val view = binding.root
+        val appContext = requireContext().applicationContext
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        var aa = ArrayAdapter(this.contexto, android.R.layout.simple_spinner_item, generos)
+        var aa2 = ArrayAdapter(this.contexto, android.R.layout.simple_spinner_item, sellos)
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        aa2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        with(binding.spinnergen)
+        {
+            adapter = aa
+            setSelection(0, false)
+            prompt = "Seleccione el Genero del Album"
+            /**gravity = Gravity.CENTER
+            onItemSelectedListener = this@FragmentAlbumCreate**/
+        }
+        with(binding.spinnersello)
+        {
+            adapter = aa2
+            setSelection(0, false)
+            prompt = "Seleccione el Sello Discografico"
+            /**gravity = Gravity.CENTER
+            onItemSelectedListener = this@FragmentAlbumCreate**/
+        }
+    }
 
+    fun Int.twoDigits() =
+        if (this <= 9) "0$this" else this.toString()
+
+    private fun showDatePickerDialog() {
+        binding.editTextFechaAlbum.setText("2022/01/01")
+        val newFragment = DatePickerFragment.newInstance(DatePickerDialog.OnDateSetListener { _, year, month, day ->
+            // +1 because January is zero
+            val selectedDate = year.toString() + " / " + (month + 1).twoDigits() + " / " + day.twoDigits()
+            binding.editTextFechaAlbum.setText(selectedDate)
+        })
+
+        newFragment.show(requireActivity().supportFragmentManager, "datePicker")
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -72,10 +117,15 @@ class FragmentAlbumCreate : Fragment() {
         activity.actionBar?.title = "Crear Album"
         viewModel = ViewModelProvider(this, AlbumCreateViewModel.Factory(activity.application)).get(
             AlbumCreateViewModel::class.java)
+        binding.editTextFechaAlbum.setOnClickListener {
+            showDatePickerDialog()
+        }
+
         binding.btnCrearAlbumRed.setOnClickListener{
+
             /** strAlbum="{\n    \"name\": \"El Cocinero Mayor\",\n    \"cover\": \"https://i.pinimg.com/564x/aa/5f/ed/aa5fed7fac61cc8f41d1e79db917a7cd.jpg\",\n    \"releaseDate\": \"1984-08-01T00:00:00-05:00\",\n    \"description\": \"Buscando América es el primer álbum de la banda de Rubén Blades y Seis del Solar lanzado en 1984. La producción, bajo el sello Elektra, fusiona diferentes ritmos musicales tales como la salsa, reggae, rock, y el jazz latino. El disco fue grabado en Eurosound Studios en Nueva York entre mayo y agosto de 1983.\",\n    \"genre\": \"Salsa\",\n    \"recordLabel\": \"Elektra\"\n}"  **/
             if (verifica()){
-                strAlbum="{\n    \"name\": \""+binding.txtEditNombreAlbum.text.toString()+"\",\n    \"cover\": \""+binding.txtEditCoverAlbum.text.toString()+"\",\n    \"releaseDate\": \""+binding.txtEditFechaAlbum.text.toString()+"\",\n    \"description\": \""+binding.txtEditDescAlbum.text.toString()+"\",\n    \"genre\": \""+binding.txtEditGeneroAlbum.text.toString()+"\",\n    \"recordLabel\": \""+binding.txtEditRecordAlbum.text.toString()+"\"\n}"
+                strAlbum="{\n    \"name\": \""+binding.editTextNombreAlbum.text.toString()+"\",\n    \"cover\": \""+binding.editTextCoverUrl.text.toString()+"\",\n    \"releaseDate\": \""+binding.editTextFechaAlbum.text.toString()+"\",\n    \"description\": \""+binding.editTextDescripcion.text.toString()+"\",\n    \"genre\": \""+binding.spinnergen.selectedItem.toString()+"\",\n    \"recordLabel\": \""+binding.spinnersello.selectedItem.toString()+"\"\n}"
                 lifecycleScope.launch{
                     val idAlbum=async{ viewModel.createAlbumFromNetwork(JSONObject(strAlbum)) }
                     i=idAlbum.await()
@@ -113,16 +163,16 @@ class FragmentAlbumCreate : Fragment() {
 
     fun verifica():Boolean{
         var resp: Boolean=true
-        if (binding.txtEditNombreAlbum.text.toString().isNullOrEmpty()){
+        if (binding.editTextNombreAlbum.text.toString().isNullOrEmpty()){
             resp=false
         }
-        else if(binding.txtEditFechaAlbum.text.toString().isNullOrEmpty()){
+        else if(binding.editTextFechaAlbum.text.toString().isNullOrEmpty()){
             resp=false
         }
-        else if(binding.txtEditGeneroAlbum.text.toString().isNullOrEmpty()){
+        else if(binding.editTextCoverUrl.text.toString().isNullOrEmpty()){
             resp=false
         }
-        else if(binding.txtEditRecordAlbum.text.toString().isNullOrEmpty()){
+        else if(binding.editTextDescripcion.text.toString().isNullOrEmpty()){
             resp=false
         }
         return resp
