@@ -20,11 +20,14 @@
 
         <TextView
             android:id="@+id/tvName"
-            android:layout_width="240dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:maxWidth="270dp"
+            android:minHeight="48dp"
+            android:gravity="center"
             android:text="@string/hello_blank_fragment"
             android:textColor="@color/black"
-            android:textSize="25dp"
+            android:textSize="25sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_margin="12dp"/>
@@ -36,84 +39,99 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_margin="12dp"
-            android:src="@drawable/vinilos"/>
+            android:src="@drawable/vinilos"
+            android:contentDescription="Imagen del album"/>
 
         <TextView
             android:id="@+id/tvGeneroTittle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:gravity="center"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ivCover"
             android:textColor="@color/black"
             android:layout_marginTop="35dp"
             android:layout_marginStart="35dp"
             android:text="@string/text_album_genero"
-            android:textSize="20dp"/>
+            android:textSize="20sp"/>
 
         <TextView
             android:id="@+id/tvGenre"
-            android:layout_width="175dp"
+            android:layout_width="wrap_content"
+            android:maxWidth="175dp"
             android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivCover"
-            android:gravity="end"
             android:layout_marginTop="35dp"
             android:layout_marginEnd="25dp"
-            android:textSize="18dp"/>
+            android:textSize="18sp"/>
 
         <TextView
             android:id="@+id/tvFechaTittle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:gravity="center"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvGenre"
             android:textColor="@color/black"
             android:layout_marginTop="35dp"
             android:layout_marginStart="35dp"
             android:text="@string/text_album_fecha"
-            android:textSize="20dp"/>
+            android:textSize="20sp"/>
 
         <TextView
             android:id="@+id/tvFecha"
-            android:layout_width="175dp"
+            android:layout_width="wrap_content"
+            android:maxWidth="175dp"
             android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvGenre"
-            android:gravity="end"
             android:layout_marginTop="35dp"
             android:layout_marginEnd="25dp"
-            android:textSize="18dp"/>
+            android:textSize="18sp"/>
 
         <TextView
             android:id="@+id/tvDescripcionTittle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:gravity="center"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvFecha"
             android:textColor="@color/black"
             android:layout_marginTop="35dp"
             android:layout_marginStart="35dp"
             android:text="@string/text_album_descripcion"
-            android:textSize="20dp"/>
+            android:textSize="20sp"/>
 
         <TextView
             android:id="@+id/tvDescription"
-            android:layout_width="175dp"
+            android:layout_width="wrap_content"
+            android:maxWidth="175dp"
             android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvFecha"
-            android:gravity="end"
             android:layout_marginTop="35dp"
             android:layout_marginEnd="25dp"
-            android:textSize="18dp"/>
+            android:textSize="18sp"/>
 
         <TextView
             android:id="@+id/tvCanciones"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:gravity="center"
             android:text="@string/cancion"
             android:textColor="@color/black"
-            android:textSize="25dp"
+            android:textSize="25sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvDescription"
@@ -136,7 +154,8 @@
             app:layout_constraintTop_toBottomOf="@id/rvTracks"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:src="@drawable/botonagregarcancion" />
+            android:src="@drawable/botonagregarcancion"
+            android:contentDescription="Boton para agregar canción al album"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
