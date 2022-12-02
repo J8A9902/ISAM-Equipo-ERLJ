@@ -154,6 +154,8 @@
             app:layout_constraintTop_toBottomOf="@id/rvTracks"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="20dp"
+            android:paddingBottom="80dp"
             android:src="@drawable/botonagregarcancion"
             android:contentDescription="Boton para agregar canción al album"/>
 

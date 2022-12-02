@@ -2,14 +2,13 @@ package com.example.vinyls.utils
 
 import android.view.View
 import android.view.ViewTreeObserver
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.*
 import androidx.test.espresso.matcher.BoundedMatcher
+import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.platform.app.InstrumentationRegistry
-import org.hamcrest.Description
-import org.hamcrest.Matcher
-import org.hamcrest.Matchers
-import org.hamcrest.StringDescription
+import org.hamcrest.*
 
 inline fun waitUntilLoaded(crossinline recyclerProvider: () -> RecyclerView) {
     Espresso.onIdle()
@@ -86,5 +85,23 @@ private class ViewPropertyChangeCallback(private val matcher: Matcher<View>, pri
     override fun onDraw() {
         matched = matcher.matches(view)
         callback.onTransitionToIdle()
+    }
+}
+
+fun setTextInTextView(value: String): ViewAction {
+    return object : ViewAction {
+        override fun getConstraints(): Matcher<View> {
+            return CoreMatchers.allOf(
+                ViewMatchers.isDisplayed(), ViewMatchers.isAssignableFrom(
+                TextView::class.java))
+        }
+
+        override fun perform(uiController: UiController, view: View) {
+            (view as TextView).text = value
+        }
+
+        override fun getDescription(): String {
+            return "replace text"
+        }
     }
 }
