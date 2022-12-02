@@ -67,12 +67,17 @@ class MainActivityTest {
         onView(withId(R.id.tvAlbum)).perform(click())
         onView(withId(R.id.btnCrearAlbum)).perform(click())
 
-        onView(withId(R.id.txtEditNombreAlbum)).perform(setTextInTextView("Album Test"))
-        onView(withId(R.id.txtEditFechaAlbum)).perform(setTextInTextView("2022-11-29"))
-        onView(withId(R.id.txtEditGeneroAlbum)).perform(setTextInTextView("Salsa"))
-        onView(withId(R.id.txtEditRecordAlbum)).perform(setTextInTextView("Elektra"))
-        onView(withId(R.id.txtEditCoverAlbum)).perform(setTextInTextView("https://definicion.de/wp-content/uploads/2008/04/musica-1.jpg"))
-        onView(withId(R.id.txtEditDescAlbum)).perform(setTextInTextView("E2E Test Auto Generated Album"))
+        onView(withId(R.id.editTextNombreAlbum)).perform(setTextInTextView("Album Test"))
+        onView(withId(R.id.editTextFechaAlbum)).perform(setTextInTextView("2022-11-29"))
+
+        onView(withId(R.id.spinnergen)).perform(click())
+        onView(withText("Salsa")).perform(click())
+
+        onView(withId(R.id.spinnersello)).perform(click())
+        onView(withText("Elektra")).perform(click())
+
+        onView(withId(R.id.editTextCoverUrl)).perform(setTextInTextView("https://definicion.de/wp-content/uploads/2008/04/musica-1.jpg"))
+        onView(withId(R.id.editTextDescripcion)).perform(setTextInTextView("E2E Test Auto Generated Album"))
 
         onView(withId(R.id.btnCrearAlbumRed)).perform(click())
 
@@ -91,6 +96,7 @@ class MainActivityTest {
 
         onView(withId(R.id.ivBotonAgregarTrack)).perform(scrollTo()).perform( click())
 
+        SystemClock.sleep(2000)
         onView(withId(R.id.etName)).perform(setTextInTextView("Track Test"), closeSoftKeyboard())
         onView(withId(R.id.etDuration)).perform(setTextInTextView("2:50"),  closeSoftKeyboard())
 
